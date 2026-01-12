@@ -2,6 +2,7 @@
 using API.Data;
 using API.HeThong;
 using API.Models;
+using API.Models.DTO;
 using API.Repository.IRepository;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace ViewAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BoNhoTrongController : BaseController<TheLoai, TheLoai, Guid>
+    public class TacGiaController : BaseController<TacGia, TacGiaDTO, Guid>
     {
-        public BoNhoTrongController(IRepository<TheLoai, Guid> repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
+        public TacGiaController(IRepository<TacGia, Guid> repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
         {
         }
     }

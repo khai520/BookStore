@@ -11,9 +11,9 @@ namespace ViewAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ThuongHieuController : BaseController<NhaXuatBan, NhaXuatBanDTO, Guid>
+    public class NhaXuatBanController : BaseController<NhaXuatBan, NhaXuatBanDTO, Guid>
     {
-        public ThuongHieuController(IRepository<NhaXuatBan, Guid> repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
+        public NhaXuatBanController(IRepository<NhaXuatBan, Guid> repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
         {
         }
     }
