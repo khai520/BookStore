@@ -1,8 +1,8 @@
 ﻿
-using JollyWeb.Service.IService;
+using Web.Service.IService;
 using API.Models.DTO;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class KhachHangService : ApiService, IKhachHangService
     {

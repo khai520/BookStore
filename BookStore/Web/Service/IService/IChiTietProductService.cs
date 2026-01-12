@@ -1,7 +1,7 @@
 ﻿
 using API.Models.DTO;
 
-namespace JollyWeb.Service.IService
+namespace Web.Service.IService
 {
     public interface IChiTietProductService : IApiService
     {

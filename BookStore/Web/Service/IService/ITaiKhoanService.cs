@@ -2,7 +2,7 @@
 using API.Models.DTO;
 using API.Models.ViewModels;
 
-namespace JollyWeb.Service.IService
+namespace Web.Service.IService
 {
     public interface ITaiKhoanService : IApiService
     {

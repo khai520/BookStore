@@ -2,7 +2,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class ApiService : IService.IApiService
     {

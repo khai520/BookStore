@@ -2,7 +2,7 @@
 
 <div class="navbar-content">
     <div class="navbar-left">
-        <div class="logo" @onclick='() => Navigation.NavigateTo("/")'><img src="https://github.com/khai520/SD_47_Jolly/blob/main/Img/logo_DoAnVat.png?raw=true" width="50px" alt="Alternate Text" /></div>
+        <div class="logo" @onclick='() => Navigation.NavigateTo("/")'><img src="img/logo.jpg" width="50px" alt="Alternate Text" /></div>
         <div class="nav-links">
             <a href="">Trang chủ</a>
             <a href="SanPham">Sản phẩm</a>
@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<JollyWeb.Components.Pages.Account.AuthModal Visible="showAuthModal"
+<Web.Components.Pages.Account.AuthModal Visible="showAuthModal"
                                              OnClose="() => Close()"  
                                              InitialTab="@initialAuthTab" />
 @code {

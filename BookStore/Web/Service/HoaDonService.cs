@@ -1,8 +1,8 @@
-﻿using JollyWeb.Service.IService;
+﻿using Web.Service.IService;
 using API.Repository.IRepository;
 using API.Models;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class HoaDonService : IHoaDonService
     {

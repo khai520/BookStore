@@ -1,11 +1,11 @@
-﻿using JollyWeb.Service.IService;
+﻿using Web.Service.IService;
 using API.Models;
 using API.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class ImageUploadService : IUploadService
     {

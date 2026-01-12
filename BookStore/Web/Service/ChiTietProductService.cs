@@ -1,9 +1,9 @@
 ﻿
 using API.Models.DTO;
 using Azure;
-using JollyWeb.Service.IService;
+using Web.Service.IService;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class ChiTietProductService : ApiService, IChiTietProductService
     {

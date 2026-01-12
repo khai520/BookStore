@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11312.151 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{4CB3C055-7A02-40FA-9122-FDAE14E017F1}"
 EndProject
@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewAPIKH", "ViewAPIKH\ViewAPIKH.csproj", "{578794AF-7CB4-43CE-8B79-7BCE606D2281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "JollyWeb\Web.csproj", "{529E7091-4AAA-4FD6-BC05-0997194F789D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNPAY_CS_ASPX", "C:\Users\khai5\Downloads\vnpay_cs\vnpay_cs\VNPAY_CS_ASPX\VNPAY_CS_ASPX.csproj", "{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,18 +73,6 @@ Global
 		{578794AF-7CB4-43CE-8B79-7BCE606D2281}.Release|x64.Build.0 = Release|Any CPU
 		{578794AF-7CB4-43CE-8B79-7BCE606D2281}.Release|x86.ActiveCfg = Release|Any CPU
 		{578794AF-7CB4-43CE-8B79-7BCE606D2281}.Release|x86.Build.0 = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|x64.Build.0 = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Debug|x86.Build.0 = Debug|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|x64.ActiveCfg = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|x64.Build.0 = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|x86.ActiveCfg = Release|Any CPU
-		{529E7091-4AAA-4FD6-BC05-0997194F789D}.Release|x86.Build.0 = Release|Any CPU
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -97,6 +85,18 @@ Global
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Release|x64.Build.0 = Release|Any CPU
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Release|x86.ActiveCfg = Release|Any CPU
 		{6CEDC31D-CF83-4E86-B4FB-BD7EC1F819AF}.Release|x86.Build.0 = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|x64.Build.0 = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|x64.ActiveCfg = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|x64.Build.0 = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE2BDC88-D1CD-68A9-724B-0BB2BF755B0E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿using JollyWeb.Service.IService;
+﻿using Web.Service.IService;
 using API.Models;
 using API.Models.DTO;
 using API.Models.ViewModels;
@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class TaiKhoanService : ApiService, ITaiKhoanService
     {

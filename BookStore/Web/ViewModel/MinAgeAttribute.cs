@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JollyWeb.ViewModel
+namespace Web.ViewModel
 {
     public class MinAgeAttribute : ValidationAttribute
     {

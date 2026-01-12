@@ -1,7 +1,7 @@
-﻿using JollyWeb.Service.IService;
+﻿using Web.Service.IService;
 using VNPAY_CS_ASPX;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class VnPayService : IVnPayService
     {

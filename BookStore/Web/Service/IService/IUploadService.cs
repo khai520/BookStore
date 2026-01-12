@@ -1,7 +1,7 @@
 ﻿using API.Models.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace JollyWeb.Service.IService
+namespace Web.Service.IService
 {
     public interface IUploadService
     {

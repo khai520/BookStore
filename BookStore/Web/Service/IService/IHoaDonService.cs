@@ -1,6 +1,6 @@
 ﻿using API.Models;
 
-namespace JollyWeb.Service.IService
+namespace Web.Service.IService
 {
     public interface IHoaDonService
     {

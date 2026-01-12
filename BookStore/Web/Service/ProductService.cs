@@ -1,8 +1,8 @@
 ﻿using API.Models.DTO;
-using JollyWeb.Service.IService;
+using Web.Service.IService;
 using System.Net.Http;
 
-namespace JollyWeb.Service
+namespace Web.Service
 {
     public class ProductService : ApiService, IProductService
     {

@@ -1,6 +1,6 @@
 ﻿
 
-namespace JollyWeb.Service.IService
+namespace Web.Service.IService
 {
     public interface IApiService 
     {
