@@ -616,7 +616,7 @@ namespace API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_chiTietProducts_TheLoaiId",
                 table: "chiTietProducts",
-                column: "TacGiaId");
+                column: "TheLoaiId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_combos_LoaiId",
