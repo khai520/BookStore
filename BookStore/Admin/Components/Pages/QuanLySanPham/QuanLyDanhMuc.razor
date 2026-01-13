@@ -375,7 +375,7 @@
             switch (tab)
             {
                 case "theloai":
-                    TheLoaiList = await apiService.GetAsync<List<TheLoai>>("TacGia") ?? new();
+                    TheLoaiList = await apiService.GetAsync<List<TheLoai>>("TheLoai") ?? new();
                     filteredTheLoai = TheLoaiList;
                     break;
                 case "kichco":

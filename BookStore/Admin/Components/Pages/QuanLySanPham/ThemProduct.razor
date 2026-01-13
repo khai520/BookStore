@@ -209,11 +209,11 @@
         showModal = false;
         modalType = "";
     }
-    private List<TheLoai> theLoaisList = new();
+    private List<TacGia> theLoaisList = new();
     private List<NhaXuatBan> thuongHieusList = new();
     private async Task LoadDropdownData()
     {
-        theLoaisList = await apiService.GetAsync<List<TheLoai>>("TheLoai") ?? new();
+        theLoaisList = await apiService.GetAsync<List<TacGia>>("TacGia") ?? new();
         thuongHieusList = await apiService.GetAsync<List<NhaXuatBan>>("NhaXuatBan") ?? new();
         StateHasChanged();
     }
