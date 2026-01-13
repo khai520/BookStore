@@ -30,10 +30,6 @@
                         <li @onclick="GoToOrders">
                             📦 Đơn hàng của tôi
                         </li>
-                        <li class="divider"></li>
-                        <li class="logout" @onclick="Logout">
-                            🚪 Đăng xuất
-                        </li>
                     </ul>
                 }
             </div>
@@ -107,7 +103,7 @@
 
         username = "";
 
-        if (Navigation.Uri != "https://localhost:7084/checkout")
+        if (Navigation.Uri != "https://localhost:7084/checkout" || Navigation.Uri != "https://localhost:7084/HoSo" || Navigation.Uri != "https://localhost:7084/giohang")
         {
             Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
         }

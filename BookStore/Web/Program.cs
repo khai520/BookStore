@@ -30,6 +30,7 @@ builder.Services.AddScoped<IChiTietProductService, ChiTietProductService>();
 builder.Services.AddScoped<IKhachHangService, KhachHangService>();
 builder.Services.AddScoped<INhanVienService, NhanVienService>();
 builder.Services.AddScoped<IHoaDonService, HoaDonService>();
+builder.Services.AddScoped<IHoaDonChiTietService, HoaDonChiTietService>();
 builder.Services.AddScoped<IHoaDonRepository, HoaDonRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));

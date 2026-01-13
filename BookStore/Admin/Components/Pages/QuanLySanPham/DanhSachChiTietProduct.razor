@@ -164,7 +164,7 @@
             </div>
             <div class="product-details">
                 <div class="details-header">
-                    <h2><i class="fas fa-list"></i> Chi Tiết Món Ăn</h2>
+                    <h2><i class="fas fa-list"></i> Chi Tiết Sản Phẩm</h2>
                     <button class="btn btn-primary" @onclick="ShowAddDetailModal">
                         <i class="fas fa-plus"></i> Thêm chi tiết
                     </button>
@@ -467,7 +467,21 @@
             {
 
                 chiTiet.TrangThai = !chiTiet.TrangThai;
-                var success = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(chiTiet));
+                var success = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(new ChiTietProductUpdateDTO
+                {
+                    Id = chiTiet.Id,
+                    Gia = chiTiet.Gia,
+                    Mota = chiTiet.Mota,
+                    Soluong = chiTiet.Soluong,
+                    SoTrang = chiTiet.SoTrang,
+                    TrangThai = chiTiet.TrangThai,
+                    TheLoaiId = chiTiet.TheLoaiId,
+                    KichCoId = chiTiet.KichCoId,
+                    NhaCungCapId = chiTiet.NhaCungCapId,
+                    ChatLieuId = chiTiet.ChatLieuId,
+                    DanhSachAnh = chiTiet.DanhSachAnh,
+                    ProductId = chiTiet.ProductId
+                }));
 
                 if (success)
                 {
@@ -491,11 +505,26 @@
     {
         try
         {
+
             var check = danhSachChiTiet.Find(x => x.TheLoaiId == chiTiet.TheLoaiId && x.ChatLieuId == chiTiet.ChatLieuId && x.NhaCungCapId == chiTiet.NhaCungCapId && x.KichCoId == chiTiet.KichCoId);
             if (check != null)
             {
                 chiTiet.Id = check.Id; 
-                var result2 = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(chiTiet));
+                var result2 = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(new ChiTietProductUpdateDTO
+                {
+                    Id = chiTiet.Id,
+                    Gia = chiTiet.Gia,
+                    Mota = chiTiet.Mota,
+                    Soluong = chiTiet.Soluong,
+                    SoTrang = chiTiet.SoTrang,
+                    TrangThai = chiTiet.TrangThai,
+                    TheLoaiId = chiTiet.TheLoaiId,
+                    KichCoId = chiTiet.KichCoId,
+                    NhaCungCapId = chiTiet.NhaCungCapId,
+                    ChatLieuId = chiTiet.ChatLieuId,
+                    DanhSachAnh = chiTiet.DanhSachAnh,
+                    ProductId = chiTiet.ProductId
+                }));
                 if (result2)
                 {
                     if (chiTiet.DanhSachAnh != null)

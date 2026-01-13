@@ -50,8 +50,9 @@ namespace API.HeThong
             CreateMap<HoaDonChiTiet, HoaDonChiTietDTO>().ReverseMap();
             CreateMap<HoaDon, HoaDonDTO>().ReverseMap();
             CreateMap<KhachHang, KhachHangDTO>()
+               
             .ForMember(dest => dest.DiaChis, opt => opt.MapFrom(src =>
-            src.NguoiDung != null ? src.NguoiDung.DiaChis : new List<DiaChi>()))
+                src.NguoiDung != null ? src.NguoiDung.DiaChis : new List<DiaChi>()))
             .ForMember(dest => dest.Ho, opt => opt.MapFrom(src =>
                 src.NguoiDung != null && !string.IsNullOrWhiteSpace(src.NguoiDung.Ho)
                 ? src.NguoiDung.Ho : ""))

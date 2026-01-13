@@ -4,7 +4,7 @@
 @inject IApiService KhachHangService
 @inject IJSRuntime JS
 @inject IMapper _mapper
-<link href="css/HoSo.css" rel="stylesheet" />
+<link href="css/Hoso.css" rel="stylesheet" />
 
 <div class="profile-page">
     <div class="profile-container">
@@ -106,6 +106,7 @@
     {
         NguoiDung nguoiDung = new()
         {
+            Id = hoSoModel.NguoiDungId,
             Ho = hoSoModel.Ho,
             Ten = hoSoModel.Ten,
             Sdt = hoSoModel.Sdt,

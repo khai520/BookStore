@@ -1,16 +1,18 @@
-﻿using Web.Service.IService;
+﻿using API.Models;
 using API.Repository.IRepository;
-using API.Models;
+using System.Net.Http;
+using Web.Service.IService;
 
 namespace Web.Service
 {
     public class HoaDonService : IHoaDonService
     {
         private readonly IHoaDonRepository hoaDonRepository;
-
-        public HoaDonService(IHoaDonRepository hoaDonRepository)
+        private readonly HttpClient _httpclient;
+        public HoaDonService(IHoaDonRepository hoaDonRepository, HttpClient httpClient)
         {
             this.hoaDonRepository = hoaDonRepository;
+            this._httpclient = httpClient;
         }
 
         public async Task<List<LichSuTrangThai>> GetLichSuTrangThaiByHoaDon(string hoaDonId)
@@ -28,6 +30,23 @@ namespace Web.Service
             catch (Exception)
             {
                 return false;
+            }
+        }
+        public async Task<List<LichSuTrangThai>> GetLichSu(string hoadonId)
+        {
+            try
+            {
+                var response = await _httpclient.GetAsync($"HoaDon/lichsu/{hoadonId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadFromJsonAsync<List<LichSuTrangThai>>();
+                    return data ?? new List<LichSuTrangThai>();
+                }
+                return new List<LichSuTrangThai>();
+            }
+            catch (Exception)
+            {
+                return new List<LichSuTrangThai>();
             }
         }
     }
