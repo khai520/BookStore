@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DBAppContext))]
-    [Migration("20260113061946_ver1")]
+    [Migration("20260113153239_ver1")]
     partial class ver1
     {
         /// <inheritdoc />
@@ -102,9 +102,6 @@ namespace API.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ChiTietMonAnId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ChiTietProductId")
@@ -324,7 +321,7 @@ namespace API.Migrations
                     b.Property<string>("ComboId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("KhachHangid")
+                    b.Property<string>("KhachHangId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -341,7 +338,7 @@ namespace API.Migrations
 
                     b.HasIndex("ComboId");
 
-                    b.HasIndex("KhachHangid");
+                    b.HasIndex("KhachHangId");
 
                     b.ToTable("gioHangs");
                 });
@@ -853,7 +850,7 @@ namespace API.Migrations
 
                     b.HasOne("API.Models.KhachHang", "KhachHang")
                         .WithMany("GioHangs")
-                        .HasForeignKey("KhachHangid")
+                        .HasForeignKey("KhachHangId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -959,13 +956,13 @@ namespace API.Migrations
                         .WithMany("Products")
                         .HasForeignKey("NhaXuatBanId");
 
-                    b.HasOne("API.Models.TacGia", "TheLoai")
+                    b.HasOne("API.Models.TacGia", "TacGia")
                         .WithMany("Product")
                         .HasForeignKey("TacGiaId");
 
                     b.Navigation("NhaXuatBan");
 
-                    b.Navigation("TheLoai");
+                    b.Navigation("TacGia");
                 });
 
             modelBuilder.Entity("API.Models.TaiKhoan", b =>

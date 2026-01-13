@@ -179,7 +179,7 @@
                         await HoaDonService.LichSuTrangThai(result3.Id, result2.TrangThai, "Hóa đơn online");
                     }
                     var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
-                    cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
+                    cartItems = cartJson.Where(x => x.KhachHangId == Id).ToList() ?? new();
                     var cartItem = cartItems.FirstOrDefault(x => x.ChiTietProductId == item.Id);
                     if (cartItem != null)
                     {

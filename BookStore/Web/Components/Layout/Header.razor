@@ -16,7 +16,27 @@
     <div class="navbar-right">
         @if (!string.IsNullOrWhiteSpace(username))
         {
-            @username
+            <div class="user-dropdown-wrapper">
+                <button class="user-btn" @onclick="ToggleUserMenu">
+                    👤 @username ▾
+                </button>
+
+                @if (showUserMenu)
+                {
+                    <ul class="user-dropdown-menu">
+                        <li @onclick="GoToProfile">
+                            👤 Thông tin khách hàng
+                        </li>
+                        <li @onclick="GoToOrders">
+                            📦 Đơn hàng của tôi
+                        </li>
+                        <li class="divider"></li>
+                        <li class="logout" @onclick="Logout">
+                            🚪 Đăng xuất
+                        </li>
+                    </ul>
+                }
+            </div>
             <button class="auth-btn logout" @onclick="Logout">Đăng xuất</button>
         } 
         else
@@ -98,4 +118,20 @@
         
     }
 
+    private bool showUserMenu = false;
+    private void ToggleUserMenu()
+    {
+        showUserMenu = !showUserMenu;
+    }
+
+    private void GoToOrders()
+    {
+        showUserMenu = false;
+        Navigation.NavigateTo("/donhang"); // trang đơn hàng người dùng
+    }
+    private void GoToProfile()
+    {
+        showUserMenu = false;
+        Navigation.NavigateTo("/hoso");
+    }
 }

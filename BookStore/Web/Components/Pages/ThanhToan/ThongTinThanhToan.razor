@@ -259,7 +259,7 @@ else
                 var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
                 if (cartJson != null)
                 {
-                    cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList();
+                    cartItems = cartJson.Where(x => x.KhachHangId == Id).ToList();
                 }
                 else
                 {

@@ -82,11 +82,11 @@
                                 <div class="option-group flavor-group">
                                     <label class="option-label">
                                         <span class="emoji">📂</span>
-                                        Hương vị:
+                                        Thể loại:
                                     </label>
                                     <div class="select-wrapper">
                                         <select class="custom-select flavor-select" @bind-Value="selectedLoaiVi" @bind-Value:event="onchange">
-                                            <option value="">-- Chọn hương vị --</option>
+                                            <option value="">-- Chọn thể loại --</option>
                                             @foreach (var v in FilteredLoaiVi)
                                             {
                                                 <option value="@v">@v</option>
@@ -100,15 +100,15 @@
                                     </div>
                                 </div>
 
-                                <!-- Kích cỡ -->
+                                <!-- Khuôn khổ -->
                                 <div class="option-group size-group">
                                     <label class="option-label">
                                         <span class="emoji">📏</span>
-                                        Kích cỡ:
+                                        Khuôn khổ:
                                     </label>
                                     <div class="select-wrapper">
                                         <select class="custom-select size-select" @bind-Value="selectedKichCo" @bind-Value:event="onchange">
-                                            <option value="">-- Chọn kích cỡ --</option>
+                                            <option value="">-- Chọn khuôn khổ --</option>
                                             @foreach (var s in FilteredKichCo)
                                             {
                                                 <option value="@s">@s</option>
@@ -122,15 +122,15 @@
                                     </div>
                                 </div>
 
-                                <!-- Nguyên liệu -->
+                                <!-- Chất liệu -->
                                 <div class="option-group material-group">
                                     <label class="option-label">
                                         <span class="emoji">📦</span>
-                                        Nguyên liệu:
+                                        Chất liệu:
                                     </label>
                                     <div class="select-wrapper">
                                         <select class="custom-select material-select" @bind-Value="selectedNguyenLieu" @bind-Value:event="onchange">
-                                            <option value="">-- Chọn nguyên liệu --</option>
+                                            <option value="">-- Chọn chất liệu --</option>
                                             @foreach (var p in FilteredNguyenLieu)
                                             {
                                                 <option value="@p">@p</option>
@@ -183,7 +183,7 @@
         }
     </div>
 </div>
-<JollyWeb.Components.Pages.Account.AuthModal Visible="showAuthModal"
+<Web.Components.Pages.Account.AuthModal Visible="showAuthModal"
                                              OnClose="() => showAuthModal = false"
                                              InitialTab="@initialAuthTab" />
 @code {
@@ -319,6 +319,8 @@
         if (!string.IsNullOrEmpty(selectedNguyenLieu))
             filtered = filtered.Where(c => c.ChatLieu == selectedNguyenLieu);
 
+        var resultList = filtered.ToList();
+
         // Cập nhật danh sách dropdown dựa trên bộ lọc hiện tại (loại vị)
         FilteredLoaiVi = ChiTietList
             .Where(c => (string.IsNullOrEmpty(selectedKichCo) || c.KichCo == selectedKichCo)
@@ -368,7 +370,14 @@
         else
         {
             // Nếu chưa chọn đủ 3 -> không gán selectedChiTiet
-            selectedChiTiet = null;
+            if (resultList.Count == 1)
+            {
+                selectedChiTiet = resultList[0];
+            }
+            else
+            {
+                selectedChiTiet = null;
+            }
 
             // Gom tất cả ảnh của các chi tiết khớp với bộ lọc hiện tại
             displayedImages = filtered
@@ -441,7 +450,7 @@
         if (!string.IsNullOrEmpty(Id))
         {
             var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
-            cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
+            cartItems = cartJson.Where(x => x.KhachHangId == Id).ToList() ?? new();
 
             var existingItem = cartItems.FirstOrDefault(c => c.ChiTietProductId == selectedChiTiet.Id);
 
@@ -475,7 +484,7 @@
                 {
                     ChiTietProductId = selectedChiTiet.Id,
                     Soluong = selectedQuantity,
-                    KhachHangid = Id,
+                    KhachHangId = Id,
                     TongGia = selectedChiTiet.Gia * selectedQuantity
                 };
 

@@ -579,7 +579,21 @@
     private async Task OnChiTietEdited(ChiTietProductDTO chiTiet)
     {
         chiTiet.Id = editingChiTiet.Id;
-        var result = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(chiTiet));
+        var result = await apiService.PutAsync<ChiTietProduct>($"ChiTietProduct", _mapper.Map<ChiTietProduct>(new ChiTietProductUpdateDTO
+        {
+            Id = chiTiet.Id,
+            Gia = chiTiet.Gia,
+            Mota = chiTiet.Mota,
+            Soluong = chiTiet.Soluong,
+            SoTrang = chiTiet.SoTrang,
+            TrangThai = chiTiet.TrangThai,
+            TheLoaiId = chiTiet.TheLoaiId,
+            KichCoId = chiTiet.KichCoId,
+            NhaCungCapId = chiTiet.NhaCungCapId,
+            ChatLieuId = chiTiet.ChatLieuId,
+            DanhSachAnh = chiTiet.DanhSachAnh,
+            ProductId = chiTiet.ProductId
+        }));
         if (chiTiet.DanhSachAnh != null)
         {
             foreach (var item in chiTiet.DanhSachAnh)

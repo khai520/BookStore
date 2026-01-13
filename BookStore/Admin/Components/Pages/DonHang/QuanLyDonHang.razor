@@ -264,7 +264,7 @@
     {
         var allHoaDon = await ApiService.GetAsync<List<HoaDon>>("HoaDon");
         DanhSachChiTiet = await ApiService.GetAsync<List<HoaDonChiTietDTO>>("HoaDonChiTiet") ?? new();
-        
+
 
         ChiTietTheoHoaDon = DanhSachChiTiet
             .GroupBy(ct => ct.HoaDonId)
@@ -345,7 +345,21 @@
                 }
 
                 monAnChiTiet.Soluong -= item.Soluong;
-                var updateResult = await ApiService.PutAsync("ChiTietProduct", monAnChiTiet);
+                var updateResult = await ApiService.PutAsync("ChiTietProduct", new ChiTietProductUpdateDTO
+                {
+                    Id = monAnChiTiet.Id,
+                    Gia = monAnChiTiet.Gia,
+                    Mota = monAnChiTiet.Mota,
+                    Soluong = monAnChiTiet.Soluong,
+                    SoTrang = monAnChiTiet.SoTrang,
+                    TrangThai = monAnChiTiet.TrangThai,
+                    TheLoaiId = monAnChiTiet.TheLoaiId,
+                    KichCoId = monAnChiTiet.KichCoId,
+                    NhaCungCapId = monAnChiTiet.NhaCungCapId,
+                    ChatLieuId = monAnChiTiet.ChatLieuId,
+                    DanhSachAnh = monAnChiTiet.DanhSachAnh,
+                    ProductId = monAnChiTiet.ProductId
+                });
                 if (!updateResult)
                 {
                     await JS.InvokeVoidAsync("alert", $"Cập nhật tồn kho cho {monAnChiTiet.Ten} thất bại!");

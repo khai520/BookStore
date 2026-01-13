@@ -109,7 +109,7 @@
         {
             
             var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
-            cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
+            cartItems = cartJson.Where(x => x.KhachHangId == Id).ToList() ?? new();
             var ctma = await ChiTietMonAn.GetAll();
             var chiTietIds = cartItems.Select(c => c.ChiTietProductId).ToList();
             chiTietMonAn = ctma.Where(c => chiTietIds.Contains(c.Id)).ToList() ?? new();

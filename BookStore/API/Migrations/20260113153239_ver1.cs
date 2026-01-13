@@ -456,9 +456,8 @@ namespace API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ChiTietMonAnId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GiamGiaId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GiamGiaId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -486,7 +485,7 @@ namespace API.Migrations
                     TongGia = table.Column<decimal>(type: "decimal(20,2)", precision: 20, scale: 2, nullable: false),
                     ComboId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    KhachHangid = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    KhachHangId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -502,8 +501,8 @@ namespace API.Migrations
                         principalTable: "combos",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_gioHangs_khachHangs_KhachHangid",
-                        column: x => x.KhachHangid,
+                        name: "FK_gioHangs_khachHangs_KhachHangId",
+                        column: x => x.KhachHangId,
                         principalTable: "khachHangs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -644,9 +643,9 @@ namespace API.Migrations
                 column: "ComboId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_gioHangs_KhachHangid",
+                name: "IX_gioHangs_KhachHangId",
                 table: "gioHangs",
-                column: "KhachHangid");
+                column: "KhachHangId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_hoaDonChiTiets_ChiTietProductId",

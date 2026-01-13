@@ -6,7 +6,7 @@ namespace API.Models
     {
         [Key] 
         public Guid Id { get; set; } = Guid.NewGuid(); 
-        public Guid ChiTietMonAnId { get; set; }
+        public Guid ChiTietProductId { get; set; }
         public string GiamGiaId { get; set; }
         public virtual ChiTietProduct ChiTietProduct { get; set; }
         public virtual GiamGia GiamGia { get; set; }

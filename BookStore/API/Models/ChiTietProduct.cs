@@ -13,7 +13,6 @@ namespace API.Models
         public string? Mota { get; set; }
         public Guid? TheLoaiId { get; set; }
         public Guid? ChatLieuId { get; set; }
-        
         public Guid? NhaCungCapId { get; set; }
         public Guid? KichCoId { get; set; }
         public decimal Gia { get; set; }

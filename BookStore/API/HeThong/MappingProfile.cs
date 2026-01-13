@@ -34,7 +34,7 @@ namespace API.HeThong
                 .ForMember(dg => dg.Gia, opt => opt.MapFrom(src => src.Gia))
                 .ReverseMap();
 
-            CreateMap<ChiTietProductDTO, ChiTietProduct>()
+            CreateMap<ChiTietProductUpdateDTO, ChiTietProduct>()
                 .ForMember(dest => dest.Product, opt => opt.Ignore())
                 .ForMember(dest => dest.NhaCungCap, opt => opt.Ignore())
                 .ForMember(dest => dest.ChatLieu, opt => opt.Ignore())

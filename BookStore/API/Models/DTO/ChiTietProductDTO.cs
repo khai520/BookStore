@@ -27,4 +27,20 @@ namespace API.Models.DTO
         public bool IsSelected { get; set; } = false;
 
     }
+    public class ChiTietProductUpdateDTO
+    {
+        public Guid Id { get; set; }
+        public string? Mota { get; set; }
+        public string ProductId { get; set; }
+        public int Soluong { get; set; }
+        public int SoTrang { get; set; }
+        public decimal Gia { get; set; }
+        public Guid? ChatLieuId { get; set; }
+        public Guid? TheLoaiId { get; set; }
+        public Guid? KichCoId { get; set; }
+        public Guid? NhaCungCapId { get; set; }
+        public List<AnhDTO>? DanhSachAnh { get; set; }
+        public bool TrangThai { get; set; }
+    }
+
 }
