@@ -1,4 +1,8 @@
-﻿/* Container chính */
+﻿
+body{
+    background:gray !important;
+}
+/* Container chính */
 h2 {
     text-align: center;
     font-size: 45px;

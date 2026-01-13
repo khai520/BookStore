@@ -23,7 +23,7 @@ body {
 .hero {
     min-height: 90vh;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
     text-align: center;
     position: relative;
@@ -55,6 +55,7 @@ body {
 .hero .container {
     position: relative;
     z-index: 2;
+    margin-bottom: 80px;
 }
 
 .hero h1 {
