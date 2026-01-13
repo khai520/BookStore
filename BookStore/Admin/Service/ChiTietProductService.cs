@@ -17,7 +17,7 @@ namespace Admin.Service
         {
             try
             {
-                var response = await _httpclient.GetAsync($"ChiTietProduct/monan/{id}");
+                var response = await _httpclient.GetAsync($"ChiTietProduct/product/{id}");
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadFromJsonAsync<List<ChiTietProductDTO>>();

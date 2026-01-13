@@ -177,7 +177,7 @@
                         {
                             try
                             {
-                                item.ChiTietMonAnId = result1.Id;
+                                item.ChiTietProductId = result1.Id;
                                 var result = await apiService.PostAsync<Anh, Anh>("Anh", _mapper.Map<Anh>(item));
                                 if (result == null)
                                 {

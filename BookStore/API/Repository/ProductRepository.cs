@@ -17,9 +17,9 @@ namespace API.Repository
         public override async Task<IEnumerable<Product>> GetAllAsync()
         {
             return await _context.products
-                .Include(m => m.ChiTietMonAns)?
+                .Include(m => m.ChiTietProduct)?
                 .ThenInclude(m => m.Anhs)
-                .Include(m => m.TheLoai)
+                .Include(m => m.TacGia)
                 .Include(m => m.NhaXuatBan)
                 .ToListAsync();
         }
@@ -27,9 +27,9 @@ namespace API.Repository
         public override async Task<Product> GetByIdAsync(string id)
         {
               return await _context.products
-                .Include(m => m.TheLoai)
+                .Include(m => m.TacGia)
                 .Include(m => m.NhaXuatBan)
-                .Include(m => m.ChiTietMonAns)?
+                .Include(m => m.ChiTietProduct)?
                 .ThenInclude(m => m.Anhs)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }

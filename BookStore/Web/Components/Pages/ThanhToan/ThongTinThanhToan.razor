@@ -14,7 +14,7 @@
 @inject IMapper _mapper
 @inject IVnPayService vnPayService
 @implements IDisposable
-<PageTitle>Checkout - Đặt hàng</PageTitle>
+<PageTitle>Book Store - Đặt hàng</PageTitle>
 
 <link href="css/ThongTinThanhToan.css" rel="stylesheet" />
 @if (chiTietMonAnList.Count == 0)
@@ -300,7 +300,7 @@ else
                 {
                     var hoadonchitiet = new HoaDonChiTietDTO()
                     {
-                        ChiTietMonAnId = item.Id,
+                        ChiTietProductId = item.Id,
                         HoaDonId = result2.Id,
                         Soluong = item.SoLuongDat,
                         ThanhTien = item.Gia * item.SoLuongDat,
@@ -312,7 +312,7 @@ else
                         await HoaDonService.LichSuTrangThai(result3.Id, result2.TrangThai, "Hóa đơn online");
                     }
 
-                    var cartItem = cartItems.FirstOrDefault(x => x.ChiTietMonAnId == item.Id);
+                    var cartItem = cartItems.FirstOrDefault(x => x.ChiTietProductId == item.Id);
                     if (cartItem != null)
                     {
                         await apiService.DeleteAsync<string>("GioHang", cartItem.Id);

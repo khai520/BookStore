@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DBAppContext))]
-    [Migration("20260112155323_ver1")]
+    [Migration("20260113061946_ver1")]
     partial class ver1
     {
         /// <inheritdoc />
@@ -31,7 +31,7 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChiTietMonAnId")
+                    b.Property<Guid?>("ChiTietProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DuongDan")
@@ -49,7 +49,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChiTietMonAnId");
+                    b.HasIndex("ChiTietProductId");
 
                     b.HasIndex("NguoiDungId");
 
@@ -80,7 +80,7 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChiTietMonAnId")
+                    b.Property<Guid?>("ChiTietProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ComboId")
@@ -91,7 +91,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChiTietMonAnId");
+                    b.HasIndex("ChiTietProductId");
 
                     b.HasIndex("ComboId");
 
@@ -318,7 +318,7 @@ namespace API.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("ChiTietMonAnId")
+                    b.Property<Guid?>("ChiTietProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ComboId")
@@ -337,7 +337,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChiTietMonAnId");
+                    b.HasIndex("ChiTietProductId");
 
                     b.HasIndex("ComboId");
 
@@ -425,7 +425,7 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ChiTietMonAnId")
+                    b.Property<Guid?>("ChiTietProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ComboId")
@@ -447,7 +447,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChiTietMonAnId");
+                    b.HasIndex("ChiTietProductId");
 
                     b.HasIndex("ComboId");
 
@@ -734,31 +734,31 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Anh", b =>
                 {
-                    b.HasOne("API.Models.ChiTietProduct", "ChiTietMonAn")
+                    b.HasOne("API.Models.ChiTietProduct", "ChiTietProduct")
                         .WithMany("Anhs")
-                        .HasForeignKey("ChiTietMonAnId")
+                        .HasForeignKey("ChiTietProductId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("API.Models.NguoiDung", "NguoiDung")
                         .WithMany()
                         .HasForeignKey("NguoiDungId");
 
-                    b.Navigation("ChiTietMonAn");
+                    b.Navigation("ChiTietProduct");
 
                     b.Navigation("NguoiDung");
                 });
 
             modelBuilder.Entity("API.Models.ChiTietCombo", b =>
                 {
-                    b.HasOne("API.Models.ChiTietProduct", "ChiTietMonAn")
+                    b.HasOne("API.Models.ChiTietProduct", "ChiTietProduct")
                         .WithMany("ChiTietCombos")
-                        .HasForeignKey("ChiTietMonAnId");
+                        .HasForeignKey("ChiTietProductId");
 
                     b.HasOne("API.Models.Combo", "Combo")
                         .WithMany("ChiTietCombos")
                         .HasForeignKey("ComboId");
 
-                    b.Navigation("ChiTietMonAn");
+                    b.Navigation("ChiTietProduct");
 
                     b.Navigation("Combo");
                 });
@@ -785,11 +785,11 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.ChiTietProduct", b =>
                 {
                     b.HasOne("API.Models.ChatLieu", "ChatLieu")
-                        .WithMany("ChiTietMonAn")
+                        .WithMany("ChiTietProduct")
                         .HasForeignKey("ChatLieuId");
 
                     b.HasOne("API.Models.KichCo", "KichCo")
-                        .WithMany("chitietproducts")
+                        .WithMany("ChiTietProduct")
                         .HasForeignKey("KichCoId");
 
                     b.HasOne("API.Models.NhaCungCap", "NhaCungCap")
@@ -797,13 +797,13 @@ namespace API.Migrations
                         .HasForeignKey("NhaCungCapId");
 
                     b.HasOne("API.Models.Product", "Product")
-                        .WithMany("ChiTietMonAns")
+                        .WithMany("ChiTietProduct")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("API.Models.TheLoai", "TheLoai")
-                        .WithMany("chitietproducts")
+                        .WithMany("ChiTietProduct")
                         .HasForeignKey("TheLoaiId");
 
                     b.Navigation("ChatLieu");
@@ -843,9 +843,9 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.GioHang", b =>
                 {
-                    b.HasOne("API.Models.ChiTietProduct", "ChiTietMonAn")
+                    b.HasOne("API.Models.ChiTietProduct", "ChiTietProduct")
                         .WithMany("GioHangs")
-                        .HasForeignKey("ChiTietMonAnId");
+                        .HasForeignKey("ChiTietProductId");
 
                     b.HasOne("API.Models.Combo", "Combo")
                         .WithMany("GioHangs")
@@ -857,7 +857,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ChiTietMonAn");
+                    b.Navigation("ChiTietProduct");
 
                     b.Navigation("Combo");
 
@@ -893,9 +893,9 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.HoaDonChiTiet", b =>
                 {
-                    b.HasOne("API.Models.ChiTietProduct", "ChiTietMonAn")
+                    b.HasOne("API.Models.ChiTietProduct", "ChiTietProduct")
                         .WithMany("HoaDonChiTiets")
-                        .HasForeignKey("ChiTietMonAnId");
+                        .HasForeignKey("ChiTietProductId");
 
                     b.HasOne("API.Models.Combo", "Combo")
                         .WithMany("HoaDonChiTiets")
@@ -907,7 +907,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ChiTietMonAn");
+                    b.Navigation("ChiTietProduct");
 
                     b.Navigation("Combo");
 
@@ -960,7 +960,7 @@ namespace API.Migrations
                         .HasForeignKey("NhaXuatBanId");
 
                     b.HasOne("API.Models.TacGia", "TheLoai")
-                        .WithMany("MonAns")
+                        .WithMany("Product")
                         .HasForeignKey("TacGiaId");
 
                     b.Navigation("NhaXuatBan");
@@ -981,7 +981,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.ChatLieu", b =>
                 {
-                    b.Navigation("ChiTietMonAn");
+                    b.Navigation("ChiTietProduct");
                 });
 
             modelBuilder.Entity("API.Models.ChiTietProduct", b =>
@@ -1042,7 +1042,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.KichCo", b =>
                 {
-                    b.Navigation("chitietproducts");
+                    b.Navigation("ChiTietProduct");
                 });
 
             modelBuilder.Entity("API.Models.Loai", b =>
@@ -1076,17 +1076,17 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Product", b =>
                 {
-                    b.Navigation("ChiTietMonAns");
+                    b.Navigation("ChiTietProduct");
                 });
 
             modelBuilder.Entity("API.Models.TacGia", b =>
                 {
-                    b.Navigation("MonAns");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("API.Models.TheLoai", b =>
                 {
-                    b.Navigation("chitietproducts");
+                    b.Navigation("ChiTietProduct");
                 });
 #pragma warning restore 612, 618
         }

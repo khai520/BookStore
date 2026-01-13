@@ -22,7 +22,7 @@
         <p>Xem và chỉnh sửa thông tin chi tiết sản phẩm</p>
     </div>
 
-    @if (monAn == null)
+    @if (product == null)
     {
         <div class="loading">
             <i class="fas fa-spinner fa-spin"></i> Đang tải...
@@ -33,34 +33,49 @@
         <div class="content">
             <div class="product-overview">
                 <div class="product-image-section">
-                    <div class="product-image-placeholder" style="background:url('@monAn.AnhDaTai') no-repeat center; background-size: contain;">
-                        <div class="product-status @(monAn.TrangThai ? "status-active" : "status-inactive")">
-                            <i class="fas @(monAn.TrangThai ? "fa-check-circle" : "fa-times-circle")"></i>
-                            @(monAn.TrangThai ? "Đang bán" : "Ngừng bán")
+                    <div class="product-image-placeholder" style="background:url('@product.AnhDaTai') no-repeat center; background-size: contain;">
+                        <div class="product-status @(product.TrangThai ? "status-active" : "status-inactive")">
+                            <i class="fas @(product.TrangThai ? "fa-check-circle" : "fa-times-circle")"></i>
+                            @(product.TrangThai ? "Đang bán" : "Ngừng bán")
                         </div>
                     </div>
                 </div>
                 <div class="product-info-section">
                     @if (isEditMode)
                     {
-                        <EditForm Model="monAn" OnValidSubmit="SaveMonAn">
+                        <EditForm Model="product" OnValidSubmit="SaveMonAn">
                             <DataAnnotationsValidator />
                             <ValidationSummary />
 
                             <div class="form-group">
-                                <InputText @bind-Value="monAn.Ten" class="form-input product-title-input" placeholder="Tên món ăn" />
+                                <InputText @bind-Value="product.Ten" class="form-input product-title-input" placeholder="Tên món ăn" />
                             </div>
 
                             <div class="form-group">
                                 <div>
-                                    <label for="theloai">Thể loại</label>
+                                    <label for="theloai">Tác giả</label>
                                     <div class="select-with-add row-layout ">
 
-                                        <InputSelect id="theloai" @bind-Value="monAn.TacGiaId">
-                                            <option selected value="@Guid.Empty">-- Thể Loại --</option>
+                                        <InputSelect id="theloai" @bind-Value="product.TacGiaId">
+                                            @if(product.TacGia == null)
+                                            {
+                                                <option selected value="">-- Tác Giả --</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="">-- Tác Giả --</option>
+                                            }
+                                            
                                             @foreach (var item in theLoaisList)
                                             {
-                                                <option value="@item.Id">@item.Ten</option>
+                                                if (item.Id == product.TacGiaId)
+                                                {
+                                                    <option selected value="@item.Id">@item.Ten</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.Ten</option>
+                                                }
                                             }
                                         </InputSelect>
                                     </div>
@@ -68,52 +83,66 @@
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <label for="thuonghieu">Thương Hiệu</label>
+                                    <label for="thuonghieu">Nhà xuất bản</label>
                                     <div class="select-with-add row-layout ">
 
-                                        <InputSelect id="thuonghieu" @bind-Value="monAn.NhaSanXuatId">
-                                            <option selected value="@Guid.Empty">-- Thương Hiệu --</option>
+                                        <InputSelect id="thuonghieu" @bind-Value="product.NhaXuatBanId">
+                                            @if (product.NhaXuatBan == null)
+                                            {
+                                                <option selected value="">-- Nhà Xuất Bản --</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="">-- Nhà Xuất Bản --</option>
+                                            }
                                             @foreach (var item in thuongHieusList)
                                             {
-                                                <option value="@item.Id">@item.Ten</option>
+                                                if (item.Id == product.NhaXuatBanId)
+                                                {
+                                                    <option selected value="@item.Id">@item.Ten</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.Ten</option>
+                                                }
                                             }
                                         </InputSelect>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="product-id">ID: <span>@monAn.Id</span></div>
+                            <div class="product-id">ID: <span>@product.Id</span></div>
 
                             <div class="form-group">
-                                <InputTextArea @bind-Value="monAn.Mota" class="form-textarea" placeholder="Mô tả món ăn" />
+                                <InputTextArea @bind-Value="product.Mota" class="form-textarea" placeholder="Mô tả món ăn" />
                             </div>
 
                             <div class="product-meta">
                                 <div class="meta-item">
                                     <i class="fas fa-toggle-on"></i>
-                                    <span>Trạng thái: <InputCheckbox @bind-Value="monAn.TrangThai" /> Đang bán</span>
+                                    <span>Trạng thái: <InputCheckbox @bind-Value="product.TrangThai" /> Đang bán</span>
                                 </div>
                             </div>
                         </EditForm>
                     }
                     else
                     {
-                        <div class="product-name">@monAn.Ten</div>
-                        <div class="product-id">ID: <span>@monAn.Id</span></div>
+                        <div class="product-name">@product.Ten</div>
+                        <div class="product-id">ID: <span>@product.Id</span></div>
                         <div class="product-brand">
-                            @monAn.NhaSanXuat 
+                            @product.NhaXuatBan 
                         </div>
                         <div class="product-category">
-                            @monAn.TacGia 
+                            @product.TacGia 
                         </div>
                         <div class="product-description">
-                            @monAn.Mota
+                            @product.Mota
                         </div>
 
                         <div class="product-meta">
                             <div class="meta-item">
                                 <i class="fas fa-toggle-on"></i>
-                                <span>Trạng thái: <span class="@(monAn.TrangThai ? "text-success" : "text-danger")">@(monAn.TrangThai ? "Đang bán" : "Ngừng bán")</span></span>
+                                <span>Trạng thái: <span class="@(product.TrangThai ? "text-success" : "text-danger")">@(product.TrangThai ? "Đang bán" : "Ngừng bán")</span></span>
                             </div>
                         </div>
                     }
@@ -171,11 +200,11 @@
                                 <div class="detail-content">
                                     <div class="detail-info">
                                         <div class="info-item">
-                                            <strong>Loại Vị:</strong>
+                                            <strong>Thể loại:</strong>
                                             <span>@(loaiViList.FirstOrDefault(x => x.Id == chiTiet.TheLoaiId)?.Ten ?? "N/A")</span>
                                         </div>
                                         <div class="info-item">
-                                            <strong>Kích Cỡ:</strong>
+                                            <strong>Khuông khổ:</strong>
                                             <span>@(kichCoList.FirstOrDefault(x => x.Id == chiTiet.KichCoId)?.Ten ?? "N/A")</span>
                                         </div>
                                         <div class="info-item">
@@ -183,7 +212,7 @@
                                             <span>@(nhaCungCapList.FirstOrDefault(x => x.Id == chiTiet.NhaCungCapId)?.Ten ?? "N/A")</span>
                                         </div>
                                         <div class="info-item">
-                                            <strong>Nguyên liệu:</strong>
+                                            <strong>Chất liệu:</strong>
                                             <span>@(dongGoiList.FirstOrDefault(x => x.Id == chiTiet.ChatLieuId)?.Ten ?? "N/A")</span>
                                         </div>
                                         <div class="info-item">
@@ -246,7 +275,7 @@
             <div class="modal-body">
                 <ThemChiTietProduct
                     ChiTietMonAnSua="@editingChiTiet"
-                    MonAnId="@MonAnId"
+                    MonAnId="@ProductId"
                     ButtonText="@(isEditingDetail ? "Cập nhật" : "Thêm")"
                     ShowFileUpload="true"
                     ShowDescription="true"
@@ -276,10 +305,10 @@
 }
 
 @code {
-    [Parameter] public string MonAnId { get; set; } = "";
+    [Parameter] public string ProductId { get; set; } = "";
 
-    private ProductDTO? monAn;
-    private ProductDTO? originalMonAn;
+    private ProductDTO? product;
+    private ProductDTO? originalProduct;
     private List<ChiTietProductDTO> danhSachChiTiet = new();
     private List<ChiTietProductDTO> tempChiTietList = new();
     private bool isEditMode = false;
@@ -308,19 +337,19 @@
         try
         {
 
-            monAn = await apiService.GetAsync<ProductDTO>($"Product/{MonAnId}");
-            if (monAn != null)
+            product = await apiService.GetAsync<ProductDTO>($"Product/{ProductId}");
+            if (product != null)
             {
-                originalMonAn = new ProductDTO
+                originalProduct = new ProductDTO
                 {
-                    Id = monAn.Id,
-                    Ten = monAn.Ten,
-                    Mota = monAn.Mota,
-                    TrangThai = monAn.TrangThai
+                    Id = product.Id,
+                    Ten = product.Ten,
+                    Mota = product.Mota,
+                    TrangThai = product.TrangThai
                 };
             }
 
-            danhSachChiTiet = (await ChiTietProductService.GetChiTiet(MonAnId))?.ToList() ?? new List<ChiTietProductDTO>();
+            danhSachChiTiet = (await ChiTietProductService.GetChiTiet(ProductId))?.ToList() ?? new List<ChiTietProductDTO>();
 
             await LoadDropdownData();
         }
@@ -334,7 +363,7 @@
 
     private async Task LoadDropdownData()
     {
-        loaiViList = await apiService.GetAsync<List<TheLoai>>("TacGia") ?? new();
+        loaiViList = await apiService.GetAsync<List<TheLoai>>("TheLoai") ?? new();
         kichCoList = await apiService.GetAsync<List<KichCo>>("KichCo") ?? new();
         nhaCungCapList = await apiService.GetAsync<List<NhaCungCap>>("NhaCungCap") ?? new();
         dongGoiList = await apiService.GetAsync<List<ChatLieu>>("ChatLieu") ?? new();
@@ -364,20 +393,23 @@
     {
         try
         {
-            if (monAn != null)
+            if (product != null)
             {
-                var result = await apiService.PutAsync<ProductDTO>($"Product", monAn);
+                var result = await apiService.PutAsync<ProductDTO>($"Product", product);
                 if (result)
                 {
                     isEditMode = false;
-                    originalMonAn = new ProductDTO
+                    originalProduct = new ProductDTO
                     {
-                        Id = monAn.Id,
-                        Ten = monAn.Ten,
-                        Mota = monAn.Mota,
-                        TrangThai = monAn.TrangThai
+                        Id = product.Id,
+                        Ten = product.Ten,
+                        Mota = product.Mota,
+                        TacGiaId = product.TacGiaId,
+                        NhaXuatBanId = product.NhaXuatBanId,
+                        TrangThai = product.TrangThai
                     };
                     ShowMessage("Cập nhật món ăn thành công!", true);
+                    LoadData();
                 }
                 else
                 {
@@ -393,11 +425,11 @@
 
     private void CancelEdit()
     {
-        if (originalMonAn != null && monAn != null)
+        if (originalProduct != null && product != null)
         {
-            monAn.Ten = originalMonAn.Ten;
-            monAn.Mota = originalMonAn.Mota;
-            monAn.TrangThai = originalMonAn.TrangThai;
+            product.Ten = originalProduct.Ten;
+            product.Mota = originalProduct.Mota;
+            product.TrangThai = originalProduct.TrangThai;
         }
         isEditMode = false;
     }
@@ -470,7 +502,7 @@
                     {
                         foreach (var item in chiTiet.DanhSachAnh)
                         {
-                            item.ChiTietMonAnId = chiTiet.Id;
+                            item.ChiTietProductId = chiTiet.Id;
                             try
                             {
                                 var result = await apiService.PostAsync<Anh, Anh>("Anh", _mapper.Map<Anh>(item));
@@ -486,7 +518,7 @@
 
                         }
                     }
-                    LoadData();
+                    await LoadData();
                     ShowMessage("Cập nhật chi tiết thành công!", true);
                     CloseDetailModal();
                 }
@@ -505,7 +537,7 @@
                     {
                         try
                         {
-                            item.ChiTietMonAnId = result.Id;
+                            item.ChiTietProductId = result.Id;
                             var result2 = await apiService.PostAsync<Anh, Anh>("Anh", _mapper.Map<Anh>(item));
                             if (result2 == null)
                             {
@@ -521,10 +553,10 @@
                 }
                 if (result != null)
                 {
-                    LoadDropdownData();
+                    await LoadDropdownData();
                     ShowMessage("Thêm chi tiết thành công!", true);
                     CloseDetailModal();
-                    LoadData();
+                    await LoadData();
                 }
                 else
                 {
@@ -554,7 +586,7 @@
             {
                 try
                 {
-                    item.ChiTietMonAnId = chiTiet.Id;
+                    item.ChiTietProductId = chiTiet.Id;
                     var result2 = await apiService.PostAsync<Anh,Anh>("Anh", _mapper.Map<Anh>(item));
                     if (result2 != null)
                     {
@@ -570,7 +602,7 @@
         }
         if (result != null)
         {
-            LoadData();
+            await LoadData();
             ShowMessage("Cập nhật chi tiết thành công!", true);
             CloseDetailModal();
         }

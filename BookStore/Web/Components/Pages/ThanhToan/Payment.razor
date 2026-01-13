@@ -165,7 +165,7 @@
                 {
                     var hoadonchitiet = new HoaDonChiTietDTO
                     {
-                        ChiTietMonAnId = item.Id,
+                        ChiTietProductId = item.Id,
                         HoaDonId = result2.Id,
                         Soluong = item.SoLuongDat,
                         ThanhTien = item.Gia * item.SoLuongDat
@@ -180,7 +180,7 @@
                     }
                     var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
                     cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
-                    var cartItem = cartItems.FirstOrDefault(x => x.ChiTietMonAnId == item.Id);
+                    var cartItem = cartItems.FirstOrDefault(x => x.ChiTietProductId == item.Id);
                     if (cartItem != null)
                     {
                         await apiService.DeleteAsync<string>("GioHang", cartItem.Id);

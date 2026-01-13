@@ -74,23 +74,23 @@ namespace API.HeThong
 
             CreateMap<Loai, LoaiDTO>().ReverseMap();
             CreateMap<Product, ProductDTO>()
-                .ForMember(t => t.NhaSanXuat, opt => opt.MapFrom(src =>
+                .ForMember(t => t.NhaXuatBan, opt => opt.MapFrom(src =>
                     src.NhaXuatBan != null && !string.IsNullOrWhiteSpace(src.NhaXuatBan.Ten)
                     ? src.NhaXuatBan.Ten : ""))
                 .ForMember(dg => dg.TacGia, opt => opt.MapFrom(src =>
-                    src.TheLoai != null && !string.IsNullOrWhiteSpace(src.TheLoai.Ten)
-                    ? src.TheLoai.Ten : ""))
+                    src.TacGia != null && !string.IsNullOrWhiteSpace(src.TacGia.Ten)
+                    ? src.TacGia.Ten : ""))
                 .ForMember(a => a.AnhDaTai, opt => opt.MapFrom(src =>
-                    src.ChiTietMonAns != null 
-                    ? src.ChiTietMonAns
+                    src.ChiTietProduct != null 
+                    ? src.ChiTietProduct
                         .Where(ct => ct.Anhs != null && ct.TrangThai == true && ct.Anhs.Any() &&
                                         !string.IsNullOrWhiteSpace(ct.Anhs.First().DuongDan))
                         .Select(ct => ct.Anhs.First().DuongDan)
                         .FirstOrDefault() ?? ""
                     : ""))
                 .ForMember(dg => dg.Gia, opt => opt.MapFrom(src =>
-                    src.ChiTietMonAns != null
-                        ? src.ChiTietMonAns
+                    src.ChiTietProduct != null
+                        ? src.ChiTietProduct
                             .Where(ct => ct.TrangThai == true && ct.Gia > 0)
                             .Select(ct => ct.Gia)
                             .FirstOrDefault()
@@ -98,7 +98,7 @@ namespace API.HeThong
                 .ReverseMap();
             CreateMap<ProductDTO, Product>()
                 .ForMember(dest => dest.NhaXuatBan, opt => opt.Ignore())
-                .ForMember(dest => dest.TheLoai, opt => opt.Ignore());
+                .ForMember(dest => dest.TacGia, opt => opt.Ignore());
             CreateMap<NguoiDung, NguoiDungDTO>().ReverseMap();
             CreateMap<NhaCungCap, NhaCungCapDTO>().ReverseMap();
             CreateMap<NhanVien, NhanVienDTO>()

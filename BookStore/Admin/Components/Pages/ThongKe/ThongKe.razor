@@ -636,7 +636,7 @@
 
 		sanPhamBanChays = (from hd in (hoaDons ?? new List<HoaDon>())
 									join hdct in hoaDonChiTiets on hd.Id equals hdct.HoaDonId
-									join ma in chitietmonAns on hdct.ChiTietMonAnId equals ma.Id
+									join ma in chitietmonAns on hdct.ChiTietProductId equals ma.Id
 									where hd.NgayTao.Date >= startDateFilter &&
 									hd.NgayTao.Date <= endDateFilter &&
 									hd.TrangThai.Equals("hoàn thành", StringComparison.OrdinalIgnoreCase) &&

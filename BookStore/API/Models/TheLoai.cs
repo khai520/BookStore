@@ -10,6 +10,6 @@ namespace API.Models
         [StringLength(50)]
         public string Ten { get; set; }
         public string Mota { get; set; }
-        public ICollection<ChiTietProduct>? chitietproducts { get; set; }
+        public ICollection<ChiTietProduct>? ChiTietProduct { get; set; }
     }
 }

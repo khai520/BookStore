@@ -6,8 +6,8 @@
         public required string Ten { get; set; }
         public Guid? TacGiaId { get; set; }
         public string? TacGia { get; set; }
-        public Guid? NhaSanXuatId { get; set; }
-        public string? NhaSanXuat { get; set; }
+        public Guid? NhaXuatBanId { get; set; }
+        public string? NhaXuatBan { get; set; }
         public TimeOnly? HanSuDung { get; set; }
         public bool TrangThai { get; set; } 
         public string? Mota { get; set; }

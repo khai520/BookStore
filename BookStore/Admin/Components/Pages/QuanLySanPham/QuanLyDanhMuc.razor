@@ -25,6 +25,12 @@
         <button class="tab @(currentTab == "chatlieu" ? "active" : "")" @onclick='() => SwitchTab("chatlieu")'>
             📦 Chất liệu
         </button>
+        <button class="tab @(currentTab == "tacgia" ? "active" : "")" @onclick='() => SwitchTab("tacgia")'>
+            📦 Tác Giả
+        </button>
+        <button class="tab @(currentTab == "nhaxuatban" ? "active" : "")" @onclick='() => SwitchTab("nhaxuatban")'>
+            📦 Nhà Xuất Bản
+        </button>
     </div>
 
     @if (!string.IsNullOrEmpty(successMessage))
@@ -300,6 +306,136 @@
             </table>
         </div>
     </div>
+
+    <!-- Tab Tác giả -->
+    <div class="tab-content @(currentTab == "tacgia" ? "active" : "")">
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-number">@tacGiaList.Count</div>
+                <div class="stat-label">Tổng tác giả</div>
+            </div>
+        </div>
+
+        <div class="management-header">
+            <div class="search-box">
+                <input type="text" @bind="searchTacGia" @bind:event="oninput" placeholder="Tìm kiếm loại tác giả..." />
+                <button class="btn btn-primary" @onclick='() => SearchData("tacgia")'>🔍 Tìm</button>
+            </div>
+            <button class="btn btn-success" @onclick='() => Them("tacgia", "add")'>
+                ➕ Thêm tác giả
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên loại tác giả</th>
+                        <th>Mô tả</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (filteredTacGia.Any())
+                    {
+                        @for (int i = 0; i < filteredTacGia.Count; i++)
+                        {
+                            var item = filteredTacGia[i];
+                            var index = i;
+                            <tr>
+                                <td>@(index + 1)</td>
+                                <td><strong>@item.Ten</strong></td>
+                                <td>@(string.IsNullOrWhiteSpace(item.Mota) ? "Chưa có mô tả" : item.Mota)</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-warning btn-sm" @onclick='() => EditItem("tacgia", "sua", item.Id, item.Ten, item.Mota)'>
+                                            ✏️ Sửa
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <div class="empty-state-icon">📄</div>
+                                <h3>@(string.IsNullOrEmpty(searchTacGia) ? "Chưa có dữ liệu" : "Không tìm thấy kết quả")</h3>
+                                <p>@(string.IsNullOrEmpty(searchTacGia) ? "Nhấn nút \"Thêm\" để tạo chất liệu mới" : "Thử lại với từ khóa khác")</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div> 
+
+    <!-- Tab Nhà xuất bản -->
+    <div class="tab-content @(currentTab == "nhaxuatban" ? "active" : "")">
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-number">@nhaXuatBanList.Count</div>
+                <div class="stat-label">Tổng loại nhà xuất bản</div>
+            </div>
+        </div>
+
+        <div class="management-header">
+            <div class="search-box">
+                <input type="text" @bind="searchNhaXuatBan" @bind:event="oninput" placeholder="Tìm kiếm loại nhà xuất bản..." />
+                <button class="btn btn-primary" @onclick='() => SearchData("nhaxuatban")'>🔍 Tìm</button>
+            </div>
+            <button class="btn btn-success" @onclick='() => Them("nhaxuatban", "add")'>
+                ➕ Thêm nhà xuất bản
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên loại nhà xuất bản</th>
+                        <th>Mô tả</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (filteredNhaXuatBan.Any())
+                    {
+                        @for (int i = 0; i < filteredNhaXuatBan.Count; i++)
+                        {
+                            var item = filteredNhaXuatBan[i];
+                            var index = i;
+                            <tr>
+                                <td>@(index + 1)</td>
+                                <td><strong>@item.Ten</strong></td>
+                                <td>@(string.IsNullOrWhiteSpace(item.Mota) ? "Chưa có mô tả" : item.Mota)</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-warning btn-sm" @onclick='() => EditItem("nhaxuatban", "sua", item.Id, item.Ten, item.Mota)'>
+                                            ✏️ Sửa
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <div class="empty-state-icon">📄</div>
+                                <h3>@(string.IsNullOrEmpty(searchNhaXuatBan) ? "Chưa có dữ liệu" : "Không tìm thấy kết quả")</h3>
+                                <p>@(string.IsNullOrEmpty(searchNhaXuatBan) ? "Nhấn nút \"Thêm\" để tạo chất liệu mới" : "Thử lại với từ khóa khác")</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -334,17 +470,23 @@
     private List<KichCo> kichCoList = new();
     private List<NhaCungCap> nhaCungCapList = new();
     private List<ChatLieu> chatLieuList = new();
+    private List<TacGia> tacGiaList = new();
+    private List<NhaXuatBan> nhaXuatBanList = new();
 
     private List<TheLoai> filteredTheLoai = new();
     private List<KichCo> filteredKichCo = new();
     private List<NhaCungCap> filteredNhaCungCap = new();
     private List<ChatLieu> filteredChatLieu = new();
+    private List<TacGia> filteredTacGia = new();
+    private List<NhaXuatBan> filteredNhaXuatBan = new();
 
     private string currentTab = "theloai";
     private string searchTheLoai = string.Empty;
     private string searchKichCo = string.Empty;
     private string searchNhaCungCap = string.Empty;
     private string searchChatLieu = string.Empty;
+    private string searchTacGia = string.Empty;
+    private string searchNhaXuatBan = string.Empty;
 
     private bool showModal = false;
     private string modalTitle = "";
@@ -390,6 +532,14 @@
                     chatLieuList = await apiService.GetAsync<List<ChatLieu>>("ChatLieu") ?? new();
                     filteredChatLieu = chatLieuList;
                     break;
+                case "tacgia":
+                    tacGiaList = await apiService.GetAsync<List<TacGia>>("TacGia") ?? new();
+                    filteredTacGia = tacGiaList;
+                    break;
+                case "nhaxuatban":
+                    nhaXuatBanList = await apiService.GetAsync<List<NhaXuatBan>>("NhaXuatBan") ?? new();
+                    filteredNhaXuatBan = nhaXuatBanList;
+                    break;
             }
         }
         catch (Exception ex)
@@ -414,6 +564,12 @@
                 break;
             case "chatlieu":
                 filteredChatLieu = chatLieuList.Where(x => x.Ten.Contains(searchChatLieu, StringComparison.OrdinalIgnoreCase)).ToList();
+                break;
+            case "tacgia":
+                filteredTacGia = tacGiaList.Where(x => x.Ten.Contains(searchTacGia, StringComparison.OrdinalIgnoreCase)).ToList();
+                break;
+            case "nhaxuatban":
+                filteredNhaXuatBan = nhaXuatBanList.Where(x => x.Ten.Contains(searchNhaXuatBan, StringComparison.OrdinalIgnoreCase)).ToList();
                 break;
         }
     }

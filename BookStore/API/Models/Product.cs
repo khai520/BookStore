@@ -18,8 +18,8 @@ namespace API.Models
         public Guid? TacGiaId { get; set; }
         public Guid? NhaXuatBanId { get; set; }
         public virtual NhaXuatBan? NhaXuatBan { get; set; }
-        public virtual TacGia? TheLoai { get; set; }
+        public virtual TacGia? TacGia { get; set; }
         [JsonIgnore]
-        public virtual ICollection<ChiTietProduct>? ChiTietMonAns { get; set; }
+        public virtual ICollection<ChiTietProduct>? ChiTietProduct { get; set; }
     }
 }

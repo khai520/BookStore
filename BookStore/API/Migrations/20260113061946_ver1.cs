@@ -409,14 +409,14 @@ namespace API.Migrations
                     DuongDan = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TrangThai = table.Column<bool>(type: "bit", nullable: false),
                     NguoiDungId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ChiTietMonAnId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_anhs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_anhs_chiTietProducts_ChiTietMonAnId",
-                        column: x => x.ChiTietMonAnId,
+                        name: "FK_anhs_chiTietProducts_ChiTietProductId",
+                        column: x => x.ChiTietProductId,
                         principalTable: "chiTietProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -434,14 +434,14 @@ namespace API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     ComboId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ChiTietMonAnId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_chiTietCombos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_chiTietCombos_chiTietProducts_ChiTietMonAnId",
-                        column: x => x.ChiTietMonAnId,
+                        name: "FK_chiTietCombos_chiTietProducts_ChiTietProductId",
+                        column: x => x.ChiTietProductId,
                         principalTable: "chiTietProducts",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -485,15 +485,15 @@ namespace API.Migrations
                     Soluong = table.Column<int>(type: "int", nullable: false),
                     TongGia = table.Column<decimal>(type: "decimal(20,2)", precision: 20, scale: 2, nullable: false),
                     ComboId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ChiTietMonAnId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     KhachHangid = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_gioHangs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_gioHangs_chiTietProducts_ChiTietMonAnId",
-                        column: x => x.ChiTietMonAnId,
+                        name: "FK_gioHangs_chiTietProducts_ChiTietProductId",
+                        column: x => x.ChiTietProductId,
                         principalTable: "chiTietProducts",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -518,15 +518,15 @@ namespace API.Migrations
                     TrangThai = table.Column<bool>(type: "bit", nullable: false),
                     ThanhTien = table.Column<decimal>(type: "decimal(20,2)", precision: 20, scale: 2, nullable: false),
                     HoaDonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ChiTietMonAnId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ChiTietProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ComboId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_hoaDonChiTiets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_hoaDonChiTiets_chiTietProducts_ChiTietMonAnId",
-                        column: x => x.ChiTietMonAnId,
+                        name: "FK_hoaDonChiTiets_chiTietProducts_ChiTietProductId",
+                        column: x => x.ChiTietProductId,
                         principalTable: "chiTietProducts",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -564,9 +564,9 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_anhs_ChiTietMonAnId",
+                name: "IX_anhs_ChiTietProductId",
                 table: "anhs",
-                column: "ChiTietMonAnId");
+                column: "ChiTietProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_anhs_NguoiDungId",
@@ -574,9 +574,9 @@ namespace API.Migrations
                 column: "NguoiDungId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_chiTietCombos_ChiTietMonAnId",
+                name: "IX_chiTietCombos_ChiTietProductId",
                 table: "chiTietCombos",
-                column: "ChiTietMonAnId");
+                column: "ChiTietProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_chiTietCombos_ComboId",
@@ -634,9 +634,9 @@ namespace API.Migrations
                 column: "NhaCungCapId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_gioHangs_ChiTietMonAnId",
+                name: "IX_gioHangs_ChiTietProductId",
                 table: "gioHangs",
-                column: "ChiTietMonAnId");
+                column: "ChiTietProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_gioHangs_ComboId",
@@ -649,9 +649,9 @@ namespace API.Migrations
                 column: "KhachHangid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_hoaDonChiTiets_ChiTietMonAnId",
+                name: "IX_hoaDonChiTiets_ChiTietProductId",
                 table: "hoaDonChiTiets",
-                column: "ChiTietMonAnId");
+                column: "ChiTietProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_hoaDonChiTiets_ComboId",

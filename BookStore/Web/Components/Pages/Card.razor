@@ -111,11 +111,11 @@
             var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
             cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
             var ctma = await ChiTietMonAn.GetAll();
-            var chiTietIds = cartItems.Select(c => c.ChiTietMonAnId).ToList();
+            var chiTietIds = cartItems.Select(c => c.ChiTietProductId).ToList();
             chiTietMonAn = ctma.Where(c => chiTietIds.Contains(c.Id)).ToList() ?? new();
             foreach (var c in chiTietMonAn)
             {
-                var cartItem = cartItems.FirstOrDefault(g => g.ChiTietMonAnId == c.Id);
+                var cartItem = cartItems.FirstOrDefault(g => g.ChiTietProductId == c.Id);
                 if (cartItem != null)
                 {
                     c.SoLuongDat = cartItem.Soluong;
@@ -162,7 +162,7 @@
 
         item.SoLuongDat = newQuantity;
 
-        var cartItem = cartItems.FirstOrDefault(c => c.ChiTietMonAnId == item.Id);
+        var cartItem = cartItems.FirstOrDefault(c => c.ChiTietProductId == item.Id);
         if (cartItem != null)
         {
             cartItem.Soluong = newQuantity;
@@ -183,10 +183,10 @@
 
             if (item != null)
             {
-                Remove(cartItems.FirstOrDefault(c => c.ChiTietMonAnId == item.Id));
+                Remove(cartItems.FirstOrDefault(c => c.ChiTietProductId == item.Id));
             }
             chiTietMonAn.RemoveAt(index);
-            cartItems.RemoveAll(c => c.ChiTietMonAnId == item.Id);
+            cartItems.RemoveAll(c => c.ChiTietProductId == item.Id);
             await SaveCartToLocalStorage();
             StateHasChanged();
         }

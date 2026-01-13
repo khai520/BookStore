@@ -4,7 +4,7 @@
 @inject NavigationManager Nav
 @inject IProductService monAnService
 @inject IChiTietProductService chiTietMonAnService
-<PageTitle>Jolly - Đồ Ăn Vặt Ngon</PageTitle>
+<PageTitle>Book Store</PageTitle>
 
 <link href="css/DanhSachSanPham.css" rel="stylesheet" />
 
@@ -84,7 +84,7 @@
     private string selectedPackaging = "";
     private decimal priceFilter = 100000;
     private decimal minPrice = 10000;
-    private decimal maxPrice = 100000;
+    private decimal maxPrice = 500000;
 
     // Filter options
     private List<string> categories = new();
@@ -121,8 +121,8 @@
                            .OrderBy(c => c)
                            .ToList();
 
-        brands = products.Where(p => !string.IsNullOrEmpty(p.NhaSanXuat))
-                        .Select(p => p.NhaSanXuat!)
+        brands = products.Where(p => !string.IsNullOrEmpty(p.NhaXuatBan))
+                        .Select(p => p.NhaXuatBan!)
                         .Distinct()
                         .OrderBy(b => b)
                         .ToList();
@@ -142,7 +142,7 @@
                 return false;
 
             if (!string.IsNullOrEmpty(selectedBrand) &&
-                product.NhaSanXuat != selectedBrand)
+                product.NhaXuatBan != selectedBrand)
                 return false;
 
             if (product.Gia > priceFilter)

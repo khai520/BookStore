@@ -30,10 +30,10 @@ namespace Web.Service
             }
         }
 
-        public async Task<string> GetIdMonAn()
+        public async Task<string> GetId()
         {
 
-            var response = await _httpClient.GetAsync("Product/GenerateMonAnId");
+            var response = await _httpClient.GetAsync("Product/GenerateId");
             if (response.IsSuccessStatusCode)
             {
                 var rawString = await response.Content.ReadAsStringAsync();

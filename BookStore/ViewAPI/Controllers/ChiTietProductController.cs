@@ -12,15 +12,15 @@ namespace ViewAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ChiTietMonAnController : BaseController<ChiTietProduct, ChiTietProduct, Guid>
+    public class ChiTietProductController : BaseController<ChiTietProduct, ChiTietProduct, Guid>
     {
         private readonly IChiTietProductRepository chiTietMonAn;
-        public ChiTietMonAnController(IChiTietProductRepository repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
+        public ChiTietProductController(IChiTietProductRepository repository, DBAppContext context, IMapper mapper, XulyId xulyId) : base(repository, context, mapper, xulyId)
         {
             chiTietMonAn = repository;
         }
-        [HttpGet("monan/{id}")]
-        public async Task<IActionResult> GetMonAnId(string id)
+        [HttpGet("product/{id}")]
+        public async Task<IActionResult> GetId(string id)
         {
             var result = await chiTietMonAn.GetProductId(id);
             var dto = _mapper.Map<IEnumerable<ChiTietProductDTO>>(result);

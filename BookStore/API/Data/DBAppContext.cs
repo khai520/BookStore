@@ -78,9 +78,9 @@ namespace API.Data
                 .HasForeignKey(nv => nv.ChucVuId);
 
             modelBuilder.Entity<Anh>()
-                .HasOne(a => a.ChiTietMonAn)
+                .HasOne(a => a.ChiTietProduct)
                 .WithMany(c => c.Anhs)
-                .HasForeignKey(a => a.ChiTietMonAnId)
+                .HasForeignKey(a => a.ChiTietProductId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<ChiTietProduct>()
                  .Property(c => c.Gia)

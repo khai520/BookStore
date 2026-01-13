@@ -335,7 +335,7 @@
             foreach (var item in selectedChiTiet)
             {
                 var chiTietMonAnList = await GetChiTietMonAnService.GetAll();
-                var monAnChiTiet = chiTietMonAnList.FirstOrDefault(x => x.Id == item.ChiTietMonAnId);
+                var monAnChiTiet = chiTietMonAnList.FirstOrDefault(x => x.Id == item.ChiTietProductId);
                 if (monAnChiTiet == null) continue;
 
                 if (monAnChiTiet.Soluong < item.Soluong)
@@ -387,7 +387,7 @@
 
         foreach (var hoaDonCt in selectedChiTiet)
         {
-            var chiTietMonAn = chiTietMonAnList.FirstOrDefault(ct => ct.Id == hoaDonCt.ChiTietMonAnId);
+            var chiTietMonAn = chiTietMonAnList.FirstOrDefault(ct => ct.Id == hoaDonCt.ChiTietProductId);
             if (chiTietMonAn == null) continue;
 
             chiTietMonAn.SoLuongDat = hoaDonCt.Soluong;

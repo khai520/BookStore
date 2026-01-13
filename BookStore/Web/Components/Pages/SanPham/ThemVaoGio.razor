@@ -443,7 +443,7 @@
             var cartJson = await apiService.GetAsync<List<GioHangDTO>>("GioHang");
             cartItems = cartJson.Where(x => x.KhachHangid == Id).ToList() ?? new();
 
-            var existingItem = cartItems.FirstOrDefault(c => c.ChiTietMonAnId == selectedChiTiet.Id);
+            var existingItem = cartItems.FirstOrDefault(c => c.ChiTietProductId == selectedChiTiet.Id);
 
             if (existingItem != null)
             {
@@ -473,7 +473,7 @@
             {
                 var newgiohang = new GioHangDTO()
                 {
-                    ChiTietMonAnId = selectedChiTiet.Id,
+                    ChiTietProductId = selectedChiTiet.Id,
                     Soluong = selectedQuantity,
                     KhachHangid = Id,
                     TongGia = selectedChiTiet.Gia * selectedQuantity
